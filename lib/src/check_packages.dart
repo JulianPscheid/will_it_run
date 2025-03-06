@@ -22,7 +22,7 @@ Future<void> checkPackages(List<String> packages, Platform platform) async {
         await client.search('platform%3A${platform.name}+$package');
 
     final supported = platformPackages.packages.isNotEmpty &&
-        platformPackages.packages[0].package == package;
+        platformPackages.packages.any((p) => p.package == package);
     supported ? supportedPackages++ : notSupported++;
 
     print((supported ? green : red) +
